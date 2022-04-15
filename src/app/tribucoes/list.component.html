@@ -1,0 +1,38 @@
+<h1>Tribucoes</h1>
+<a routerLink="add" class="btn btn-sm btn-success mb-2">Nuevo</a>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th style="width: 30%">Name</th>
+      <th style="width: 10%"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let tribucoe of tribucoes">
+      <td>{{ tribucoe.id }} - {{ tribucoe.description }}</td>
+      <td style="white-space: nowrap">
+        <a
+          routerLink="edit/{{ tribucoe.id }}"
+          class="btn btn-sm btn-primary mr-1"
+          >Edit</a
+        >
+        <button
+          (click)="deleteTribucoe(tribucoe.id)"
+          class="btn btn-sm btn-danger btn-delete-user"
+          [disabled]="tribucoe.isDeleting"
+        >
+          <span
+            *ngIf="tribucoe.isDeleting"
+            class="spinner-border spinner-border-sm"
+          ></span>
+          <span *ngIf="!tribucoe.isDeleting">Delete</span>
+        </button>
+      </td>
+    </tr>
+    <tr *ngIf="!tribucoes">
+      <td colspan="4" class="text-center">
+        <span class="spinner-border spinner-border-lg align-center"></span>
+      </td>
+    </tr>
+  </tbody>
+</table>
